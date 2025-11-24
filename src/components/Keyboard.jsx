@@ -17,6 +17,7 @@ function Keyboard() {
         break;
       case "down":
         setText("");
+        
         break;
           case " ":
         setText(text + " ");

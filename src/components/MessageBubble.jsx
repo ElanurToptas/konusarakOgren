@@ -16,6 +16,6 @@ export default MessageBubble
 
 const style =  StyleSheet.create({
   container:{
-    height:height*0.53,
+    height:height*0.52,
   }
 })
