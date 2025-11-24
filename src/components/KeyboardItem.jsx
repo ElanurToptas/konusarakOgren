@@ -15,10 +15,10 @@ const { width, height } = Dimensions.get("window");
 
 const lettersOne = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
 const lettersTwo = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
-const lettersThree = [up, "Z", "X", "C", "V", "B", "N", "M", del];
-const lettersFour = ["123", ",", " ", ".", down];
+const lettersThree = ["up", "Z", "X", "C", "V", "B", "N", "M", "del"];
+const lettersFour = ["123", ",", " ", ".", "down"];
 
-function KeyboardItem({ letter }) {
+function KeyboardItem({ letter, isUpper }) {
   return (
     <View>
       <View>
@@ -45,7 +45,19 @@ function KeyboardItem({ letter }) {
                   ]}
                   onPress={() => letter(item)}
                 >
-                  {typeof item === "string" ? <Text>{item}</Text> : item}
+                  {item === "up" ? (
+                    up
+                  ) : item === "del" ? (
+                    del
+                  ) : item === "down" ? (
+                    down
+                  ) : typeof item === "string" ? (
+                    <Text>
+                      {isUpper ? item.toUpperCase() : item.toLowerCase()}
+                    </Text>
+                  ) : (
+                    item
+                  )}
                 </TouchableOpacity>
               ))}
             </View>
