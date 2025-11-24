@@ -10,7 +10,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 const up = <Ionicons name="arrow-up" size={18} color="black" />;
 const del = <Ionicons name="backspace-outline" size={18} color="black" />;
-const down = <Ionicons name="return-down-back" size={18} color="black" />;
+const down = <Ionicons name="arrow-forward" size={18} color="black" />;
 const { width, height } = Dimensions.get("window");
 
 const lettersOne = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
@@ -41,6 +41,7 @@ function KeyboardItem({ letter, isUpper }) {
                         letters === lettersFour && item === " "
                           ? width * 0.5
                           : width * 0.08,
+                        backgroundColor: item === "down" ? "#309dff" : "transparent",
                     },
                   ]}
                   onPress={() => letter(item)}
@@ -83,7 +84,7 @@ const style = StyleSheet.create({
     height: height * 0.04,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "blue",
+    borderColor: "#309dff",
     marginBottom: 10,
   },
 });

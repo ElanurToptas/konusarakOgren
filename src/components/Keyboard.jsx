@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View } from "react-native";
 import KeyboardItem from "./KeyboardItem";
+import InputItem from "./InputItem";
 
 function Keyboard() {
   const [text, setText] = useState("");
@@ -15,17 +16,19 @@ function Keyboard() {
         setText(text.slice(0, -1));
         break;
       case "down":
-        setText(text + "\n");
+        setText("");
         break;
           case " ":
         setText(text + " ");
         break;
       default:
-        setText(text + item);
+       const letterToAdd = isUpper && typeof item === "string" ? item.toUpperCase() : item.toLowerCase();
+      setText(text + letterToAdd);
     }
   };
   return (
     <View>
+      <InputItem message={text} />
       <KeyboardItem letter={handleLetter} isUpper={isUpper}/>
     </View>
   );
