@@ -6,7 +6,7 @@ const { width, height } = Dimensions.get("window");
 
 function ReportScreen() {
   return (
-   <View style={style.container}>
+   <View style={styles.container}>
     <Header header={"Report"}/>
    </View>
   )
@@ -14,7 +14,7 @@ function ReportScreen() {
 
 export default ReportScreen
 
-const style =  StyleSheet.create({
+const styles =  StyleSheet.create({
   container: {
     backgroundColor: "white",
     height: height,

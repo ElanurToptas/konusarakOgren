@@ -7,7 +7,7 @@ const { width, height } = Dimensions.get("window");
 
 function SpeakScreen() {
   return (
-    <View style={style.container}>
+    <View style={styles.container}>
       <Header header={"AI ile Konuş"}/>
       <MessageBubble />
       <Keyboard />
@@ -17,7 +17,7 @@ function SpeakScreen() {
 
 export default SpeakScreen;
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     height: height,

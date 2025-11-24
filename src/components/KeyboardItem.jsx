@@ -10,13 +10,12 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 const up = <Ionicons name="arrow-up" size={18} color="black" />;
 const del = <Ionicons name="backspace-outline" size={18} color="black" />;
-const down = <Ionicons name="arrow-forward" size={18} color="black" />;
 const { width, height } = Dimensions.get("window");
 
 const lettersOne = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
 const lettersTwo = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
 const lettersThree = ["up", "Z", "X", "C", "V", "B", "N", "M", "del"];
-const lettersFour = ["123", ",", " ", ".", "down"];
+const lettersFour = ["123", ",", " ", ".", "Analiz Et"];
 
 function KeyboardItem({ letter, isUpper }) {
   return (
@@ -27,7 +26,7 @@ function KeyboardItem({ letter, isUpper }) {
             <View
               key={index}
               style={[
-                style.container,
+                styles.container,
                 { paddingHorizontal: letters === lettersTwo ? 10 : 0 },
               ]}
             >
@@ -35,13 +34,13 @@ function KeyboardItem({ letter, isUpper }) {
                 <TouchableOpacity
                   key={index}
                   style={[
-                    style.keyboardButtons,
+                    styles.keyboardButtons,
                     {
                       width:
-                        letters === lettersFour && item === " "
-                          ? width * 0.5
+                        letters === lettersFour && item === " " || item === "Analiz Et"
+                          ? width * 0.25
                           : width * 0.08,
-                        backgroundColor: item === "down" ? "#309dff" : "transparent",
+                        backgroundColor: item === "Analiz Et" ? "#309dff" : "transparent",
                     },
                   ]}
                   onPress={() => letter(item)}
@@ -71,7 +70,7 @@ function KeyboardItem({ letter, isUpper }) {
 
 export default KeyboardItem;
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -80,7 +79,6 @@ const style = StyleSheet.create({
   keyboardButtons: {
     alignItems: "center",
     justifyContent: "center",
-    width: width * 0.72,
     height: height * 0.04,
     borderRadius: 10,
     borderWidth: 1,

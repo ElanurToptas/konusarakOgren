@@ -4,16 +4,16 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 function Header({header}) {
   return (
-   <View style={style.container}>
+   <View style={styles.container}>
     <Ionicons name='arrow-back' size={20} color="gray" />
-    <Text style={style.header}>{header}</Text>
+    <Text style={styles.header}>{header}</Text>
    </View>
   )
 }
 
 export default Header
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
     height: 60,
     justifyContent: "center",

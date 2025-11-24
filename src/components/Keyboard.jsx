@@ -3,7 +3,11 @@ import { View } from "react-native";
 import KeyboardItem from "./KeyboardItem";
 import InputItem from "./InputItem";
 
+import { useDispatch } from "react-redux";
+import { input } from "../redux/store/textSlice";
+
 function Keyboard() {
+  const dispatch =  useDispatch();
   const [text, setText] = useState("");
   const [isUpper, setIsUpper] = useState(false);
 
@@ -15,9 +19,11 @@ function Keyboard() {
       case "del":
         setText(text.slice(0, -1));
         break;
-      case "down":
-        setText("");
-        
+      case "Analiz Et":
+        if(text.trim() != ""){
+          setText("");
+        dispatch(input(text))
+        }
         break;
           case " ":
         setText(text + " ");
