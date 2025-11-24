@@ -7,7 +7,7 @@ export const textSlice = createSlice({
     entries: [],
   },
   reducers: {
-    input: (state, action) => {
+    setInput: (state, action) => {
       state.input = action.payload;
     },
     addEntry(state, action) {
@@ -19,5 +19,5 @@ export const textSlice = createSlice({
   },
 });
 
-export const { input, addEntry, setEntries } = textSlice.actions;
+export const { setInput, addEntry, setEntries } = textSlice.actions;
 export default textSlice.reducer;

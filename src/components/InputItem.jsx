@@ -1,6 +1,5 @@
 import React from 'react'
-import {View, TextInput, StyleSheet,TouchableOpacity} from "react-native"
-import Ionicons from "react-native-vector-icons/Ionicons";
+import {View, TextInput, StyleSheet} from "react-native"
 
 function InputItem({message, onChange}) {
   

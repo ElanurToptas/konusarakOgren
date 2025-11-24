@@ -1,13 +1,22 @@
 import React from 'react'
-import {View, Text, StyleSheet, Dimensions} from "react-native"
+import {View, StyleSheet, Dimensions, Text} from "react-native"
 import Header from '../components/Header';
+
+import { useSelector } from "react-redux";
 
 const { width, height } = Dimensions.get("window");
 
 function ReportScreen() {
+   const entries = useSelector((state) => state.input.entries);
+
   return (
    <View style={styles.container}>
     <Header header={"Report"}/>
+     {entries.map((entry) => (
+        <View key={entry.id} style={styles.entryContainer}>
+          <Text>{entry.text}</Text>
+        </View>
+      ))}
    </View>
   )
 }

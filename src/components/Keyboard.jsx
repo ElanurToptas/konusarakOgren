@@ -3,10 +3,8 @@ import { View } from "react-native";
 import KeyboardItem from "./KeyboardItem";
 import InputItem from "./InputItem";
 import { saveEntries } from "../storage/storage";
-import { useSelector } from "react-redux";
-
-import { useDispatch } from "react-redux";
-import { input, addEntry } from "../redux/store/textSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { setInput, addEntry } from "../redux/store/textSlice";
 
 function Keyboard() {
   const dispatch = useDispatch();
@@ -23,18 +21,19 @@ function Keyboard() {
         setText(text.slice(0, -1));
         break;
       case "Analiz Et":
-        if (text.trim() != "") {
+        if (text.trim() !== "") {
           const newEntry = {
             id: Date.now(),
-            text: text,
+            text,
             date: new Date().toISOString(),
           };
 
           dispatch(addEntry(newEntry));
-          saveEntries([...entries, newEntry]);
+          dispatch(setInput(text));
+
+          await saveEntries([...entries, newEntry]);
 
           setText("");
-          dispatch(input(text));
         }
         break;
       case " ":
@@ -48,6 +47,7 @@ function Keyboard() {
         setText(text + letterToAdd);
     }
   };
+
   return (
     <View>
       <InputItem message={text} onChange={setText} />
