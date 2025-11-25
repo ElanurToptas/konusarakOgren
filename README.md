@@ -4,6 +4,9 @@ Bu proje, **React Native CLI** ile geliştirilmiş, kullanıcı cümlelerini AI 
 Kullanıcı yazdığı metni “Analiz Et” butonuyla gönderir, uygulama da cümlenin duygu durumunu (pozitif / negatif) tespit edip Türkçe öneri ve kısa bir özet üretir.  
 Önceki analizler cihazda saklanır ve **internet yokken bile geçmiş analizler görüntülenebilir.**
 
+# AI araç kullanımı
+Projenin tasarımlarını tamamen kendim yaptım ve yapay zeka entegrasyonu dışında tüm kodları ben oluşturdum. Hugging Face bağlantısını kurmak için önce YouTube üzerindeki eğitim videolarından yararlandım, ardından ChatGPT 5.1 Plus desteğiyle entegrasyonu geliştirip projeye entegre ettim.
+
 ---
 
 ## 🚀 Özellikler

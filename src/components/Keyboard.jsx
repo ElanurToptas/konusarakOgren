@@ -17,7 +17,7 @@ const analyzeSentiment = async (text) => {
       {
         method: "POST",
         headers: {
-          Authorization: "Bearer ",
+          Authorization: "Bearer",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ inputs: text }),
