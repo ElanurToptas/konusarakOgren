@@ -165,11 +165,11 @@ Uygulama offline açıldığında bile geçmiş analizler Report ekranında gör
 
 İnternet yoksa sadece yeni analiz alınamaz, fakat eski kayıtlar korunur.
 
-<div style="display: flex; flex-wrap: wrap; gap: 10px;" >
+
 <img src="./assets/1.jpeg" width="300"/>
 <img src="./assets/2.jpeg" width="300"/>
 <img src="./assets/3.jpeg" width="300"/>
 <img src="./assets/4.jpeg" width="300"/>
 <img src="./assets/5.jpeg" width="300"/>
-<img src="./assets/6.jpeg" width="300"/></div>
+<img src="./assets/6.jpeg" width="300"/>
 
