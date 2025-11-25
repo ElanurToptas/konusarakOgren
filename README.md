@@ -181,4 +181,5 @@ Uygulama offline açıldığında bile geçmiş analizler Report ekranında gör
   </tr>
 </table>
 
-
+## 🎥 Uygulama Tanıtım Videosu
+https://youtube.com/shorts/ORrtY4ldquQ?si=olqmCK6E5TTz0_jQ
