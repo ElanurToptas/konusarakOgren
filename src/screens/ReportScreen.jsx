@@ -1,31 +1,23 @@
 import React from "react";
-import { View, StyleSheet, Dimensions, Text, ScrollView } from "react-native";
+import { View, StyleSheet, Dimensions, ScrollView } from "react-native";
 import Header from "../components/Header";
-
-import { useSelector } from "react-redux";
+import Report from "../components/Report";
 
 const { width, height } = Dimensions.get("window");
 
 function ReportScreen() {
-  const entries = useSelector((state) => state.input.entries);
 
   return (
-   <ScrollView>
+    <ScrollView>
       <View style={styles.container}>
-        <Header header={"Report"}  />
-       {entries.map((entry) => (
-        <View key={entry.id} style={styles.entryContainer}>
-          <Text>Kullanıcı:  {entry.text}</Text>
-          <Text>Öneri: {entry.suggestion}</Text>
-          <Text>Özet: {entry.summary}</Text>
-        </View>
-      ))}
-     </View>
-   </ScrollView>
-  );;
+        <Header header={"Report"} />
+        <Report />
+      </View>
+    </ScrollView>
+  );
 }
 
-export default ReportScreen;;
+export default ReportScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -34,4 +26,3 @@ const styles = StyleSheet.create({
     padding: height * 0.04,
   },
 });
-;

@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import KeyboardItem from "./KeyboardItem";
 import InputItem from "./InputItem";
@@ -8,7 +8,6 @@ import { setInput, addEntry } from "../redux/store/textSlice";
 import { clearStorage } from "../storage/storage";
 
 import { analyzeSentiment, warmupModel } from "../services/aiService";
-
 
 function Keyboard() {
   const dispatch = useDispatch();
@@ -23,7 +22,7 @@ function Keyboard() {
         {
           method: "POST",
           headers: {
-            Authorization: " ",
+            Authorization: "",
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ inputs: text }),
@@ -45,11 +44,9 @@ function Keyboard() {
     }
   };
 
-  
   // useEffect(() => {
   //   warmupModel();
   // }, []);
-
 
   const handleLetter = async (item) => {
     switch (item) {
@@ -70,9 +67,15 @@ function Keyboard() {
           if (aiResult && aiResult.label) {
             const label = aiResult.label.toLowerCase();
 
-            if (label === "positive") suggestion = "Güzel bir gün geçirmene sevindim" ,summary="Bugün genel olarak olumlu bir gün geçirmişsin";
-            else if (label === "negative") suggestion = "Bügün biraz dinlenmeye ne dersin" ,summary="Bugün genel olarak olumsuz bir gün geçirmişsin";
-            else suggestion = "Nötr ";
+            if (label === "positive")
+              ((suggestion = "Güzel bir gün geçirmene sevindim"),
+                (summary = "Bugün genel olarak olumlu bir gün geçirmişsin"));
+            else if (label === "negative")
+              ((suggestion = "Bügün biraz dinlenmeye ne dersin"),
+                (summary = "Bugün genel olarak olumsuz bir gün geçirmişsin"));
+            else
+              ((suggestion = "Bir yeşil çay içmeye ne dersin"),
+                (summary = "Bugün fena bir gün değil gibi"));
           }
 
           const newEntry = {
@@ -95,9 +98,10 @@ function Keyboard() {
         }
         break;
 
-
       case " ":
-        clearStorage();
+        setText(text + " ");
+        break;
+        case "AC":
         clearStorage();
         break;
       default:

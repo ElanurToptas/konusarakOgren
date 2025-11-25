@@ -15,7 +15,7 @@ const { width, height } = Dimensions.get("window");
 const lettersOne = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
 const lettersTwo = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
 const lettersThree = ["up", "Z", "X", "C", "V", "B", "N", "M", "del"];
-const lettersFour = ["123", ",", " ", ".", "Analiz Et"];
+const lettersFour = ["AC", ",", " ", ".", "Analiz Et"];
 
 function KeyboardItem({ letter, isUpper }) {
   return (
