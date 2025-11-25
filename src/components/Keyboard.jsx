@@ -6,43 +6,44 @@ import { saveEntries } from "../storage/storage";
 import { useSelector, useDispatch } from "react-redux";
 import { setInput, addEntry } from "../redux/store/textSlice";
 import { clearStorage } from "../storage/storage";
+import { HF_TOKEN } from "@env";
 
-import { analyzeSentiment, warmupModel } from "../services/aiService";
+// import { analyzeSentiment, warmupModel } from "../services/aiService";
+
+const analyzeSentiment = async (text) => {
+  try {
+    const res = await fetch(
+      "https://router.huggingface.co/hf-inference/models/distilbert/distilbert-base-uncased-finetuned-sst-2-english",
+      {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ inputs: text }),
+      }
+    );
+
+    const data = await res.json();
+    console.log("HF RAW:", data);
+
+    if (Array.isArray(data) && Array.isArray(data[0])) {
+      const best = data[0].sort((a, b) => b.score - a.score)[0];
+      return best;
+    }
+
+    return null;
+  } catch (err) {
+    console.log("API ERROR:", err);
+    return null;
+  }
+};
 
 function Keyboard() {
   const dispatch = useDispatch();
   const entries = useSelector((state) => state.input.entries);
   const [text, setText] = useState("");
   const [isUpper, setIsUpper] = useState(false);
-
-  const analyzeSentiment = async (text) => {
-    try {
-      const res = await fetch(
-        "https://router.huggingface.co/hf-inference/models/distilbert/distilbert-base-uncased-finetuned-sst-2-english",
-        {
-          method: "POST",
-          headers: {
-            Authorization: "",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ inputs: text }),
-        }
-      );
-
-      const data = await res.json();
-      console.log("HF RAW:", data);
-
-      if (Array.isArray(data) && Array.isArray(data[0])) {
-        const best = data[0].sort((a, b) => b.score - a.score)[0];
-        return best;
-      }
-
-      return null;
-    } catch (err) {
-      console.log("API ERROR:", err);
-      return null;
-    }
-  };
 
   // useEffect(() => {
   //   warmupModel();
@@ -67,15 +68,16 @@ function Keyboard() {
           if (aiResult && aiResult.label) {
             const label = aiResult.label.toLowerCase();
 
-            if (label === "positive")
-              ((suggestion = "Güzel bir gün geçirmene sevindim"),
-                (summary = "Bugün genel olarak olumlu bir gün geçirmişsin"));
-            else if (label === "negative")
-              ((suggestion = "Bügün biraz dinlenmeye ne dersin"),
-                (summary = "Bugün genel olarak olumsuz bir gün geçirmişsin"));
-            else
-              ((suggestion = "Bir yeşil çay içmeye ne dersin"),
-                (summary = "Bugün fena bir gün değil gibi"));
+            if (label === "positive") {
+              suggestion = "I'm glad you're having a good day!";
+              summary = "It seems like you've had a generally positive day.";
+            } else if (label === "negative") {
+              suggestion = "Maybe take a little time to rest today.";
+              summary = "It seems like you've had a rather difficult day.";
+            } else {
+              suggestion = "How about taking a short break with a cup of tea?";
+              summary = "It seems like your day was neither good nor bad.";
+            }
           }
 
           const newEntry = {
@@ -101,7 +103,7 @@ function Keyboard() {
       case " ":
         setText(text + " ");
         break;
-        case "AC":
+      case "AC":
         clearStorage();
         break;
       default:

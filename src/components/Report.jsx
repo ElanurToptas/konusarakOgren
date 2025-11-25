@@ -8,7 +8,7 @@ function Report() {
   return (
     <View>
          {entries.map((entry) => (
-                <View key={entry.id} style={[styles.container , { backgroundColor: entry.aiResult.label === "POSITIVE" ? "#d2e896ff" : "gray"}]} >
+                <View key={entry.id} style={[styles.container , { backgroundColor: entry?.aiResult?.label === "POSITIVE" ? "#d2e896ff" : "gray"}]} >
                   <Text>Kullanıcı:  {entry.text}</Text>
                   <Text>Öneri: {entry.suggestion}</Text>
                   <Text>Özet: {entry.summary}</Text>
